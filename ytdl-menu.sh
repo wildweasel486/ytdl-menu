@@ -3,6 +3,8 @@
 # https://github.com/wildweasel486/ytdl-menu for updates
 # licensed under the terms of MIT; see LICENSE for info.
 
+bin=yt-dlp
+
 echo	"ytdl-menu by wildweasel"
 selection=
 until [ "$selection" = "0" ]; do
@@ -25,7 +27,7 @@ has the video ID of VIDEO_ID.";
 			echo -n "Paste the ID here: > ";
 			read ytdlID;
 			echo "Now attempting to download video from ID: $ytdlID";
-			youtube-dl -f bestaudio -o "./Output/%(title)s.%(ext)s" --extract-audio --audio-format "mp3" $ytdlID;;
+			./$bin -f bestaudio -o "./Output/%(title)s.%(ext)s" --extract-audio --audio-format "mp3" $ytdlID;;
 
 		2 ) echo	"Playlist mode selected.
 Please copy the Playlist ID. The ID is everyting to the right of list=
@@ -35,10 +37,10 @@ has the playlist ID of PLAYLISTIDGOESHERE.";
 			echo -n "Paste the ID here: > ";
 			read ytdlID;
 			echo "Now attempting to download playlist from ID: $ytdlID";
-			youtube-dl -f bestaudio -o "./%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" --extract-audio --audio-format "mp3" $ytdlID;;
+			./$bin -f bestaudio -o "./%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s" --extract-audio --audio-format "mp3" $ytdlID;;
 
 		3 ) echo "OK, telling youtube-dl to go update itself.";
-			sudo youtube-dl -U;;
+			./$bin -U;;
 	esac
 done
 
