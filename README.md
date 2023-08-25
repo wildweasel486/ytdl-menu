@@ -8,15 +8,25 @@ Note that, because the MP3 conversion is done via ffmpeg, you will want to make 
 ## Setup
 The script itself should be self-contained, run from local folder (ideally, have it in the folder where you want to download to). It may very well be possible to install ytdl-menu, but this is not something I have ever tried.
 
-For usage in Windows 10, I have only ever tested this using Ubuntu via WSL; this means that you will need to _use a Linux version of youtube-dl_, as this WILL NOT WORK using the Windows EXE. I do not see any reason why it wouldn't work on your Linux flavor of choice, but please let me know if there are issues (or ideally, advise me on how to correct them, via pull request).
+### An important note if you are using a fork of youtube-dl
+If you are using a different fork of youtube-dl besides (as of this writing) yt-dlp, open ytdl-menu.sh in your text editor of choice and modify line 6 (`bin=yt-dlp`) to `bin=name_of_your_forks_executable`. If you are using yt-dlp, in linux or windows, you do not need to change anything. _Thanks to malachai for implementing this._
+
+### Using via Windows without WSL
+If you do not want to use WSL for whatever reason (you're valid, btw), ytdl-menu will work just as well with a Windows EXE of youtube-dl. Download ytdl-menu.sh, and place it in the same folder as your fork of choice, and ensure that ffmpeg.exe and ffprobe.exe are in the same folder as well. To actually run the script, you'll need a way to execute Bash scripts. I, personally, have had 100% success using Git Bash, which gets installed with [the Git tools for Windows](https://git-scm.com/download/win); installed with default settings, you can even just double-click ytdl-menu.sh and it'll work.
+
+### Using via WSL
+For usage in Windows 10 or 11 via WSL, you will need to _use a Linux or Python version of youtube-dl_. Get it configured to the point where you can run it simply by typing its name into your terminal, then the script should be able to invoke it without problems.
 
 If you are using a different fork besides yt-dlp, edit this script with your text editor of choice and change line 6 to indicate what you're using.
 
 ## Usage
 Run `ytdl-menu.sh` from the folder in which you want your files downloaded. You will see 3 options:
-`1 - Download a single video as an MP3
+
+```
+1 - Download a single video as an MP3
 2 - Download a whole playlist as MP3
-3 - Update youtube-dl (run this if it won't download)`
+3 - Update youtube-dl (run this if it won't download)
+```
 
 For option 1, _generally_ copying in the URL to the Youtube video will work, _however_ I personally advise clicking the video's Share button and copying it from there to get the shortened `youtu.be/VIDEO_ID` one instead. If it throws errors saying it can't find the video, copy only the video ID into it. The output will be placed in a subfolder called `Output` within the working folder.
 
